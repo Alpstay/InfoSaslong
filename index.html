@@ -203,6 +203,21 @@ body{overflow:hidden}
 .ext-x:hover{background:var(--gold);color:#fff}
 .ext-wrap iframe{flex:1;border:0;width:100%;background:#fff}
 .ext-wrap .hint{padding:6px 14px 10px;margin:0;border-top:1px solid var(--line);flex:none;text-align:center;font-size:.8rem}
+
+/* tabellone bus */
+#bus-board{display:grid;gap:14px}
+.bcol{margin:0}
+.brow{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.brow:last-child{border-bottom:0}
+.bline{min-width:52px;text-align:center;font-weight:700;color:#fff;background:var(--blue-deep);border-radius:8px;padding:6px 8px}
+.bdest b{display:block;line-height:1.2}
+.bst{display:inline-block;font-size:.78rem;color:var(--muted);margin-top:2px}
+.bst.ok{color:#2e7d4f}.bst.late{color:#b4542a;font-weight:700}
+.btime{text-align:right}.btime b{display:block;font-size:1.15rem}.btime span{font-size:.82rem;color:var(--muted)}
+.btime s{color:var(--muted)}
+.blive{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e7d4f;vertical-align:middle;animation:blive 1.6s infinite}
+@keyframes blive{50%{opacity:.25}}
+.bframe{width:100%;height:60vh;border:1px solid var(--line);border-radius:14px;background:#fff}
 /* bottom sheet */
 .sheet-bg{position:fixed;inset:0;background:rgba(255,255,255,.7);opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}
 .sheet{position:fixed;left:0;right:0;bottom:0;max-height:82dvh;overflow:auto;background:var(--bg);color:var(--ink);border-radius:20px 20px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .25s;z-index:21;max-width:560px;margin:0 auto;box-shadow:0 -6px 30px rgba(0,0,0,.15)}
@@ -239,6 +254,7 @@ body{overflow:hidden}
   .prod{padding:16px 18px}.prod .ic{width:64px;height:64px}.prod .ic.ph{width:84px;height:110px}.prod .ic img{max-height:104px;max-width:78px}
   .qty button{width:44px;height:44px}
   .sheet{max-width:960px;padding:14px 40px calc(28px + env(safe-area-inset-bottom))}
+  .bline{min-width:70px;padding:8px 10px}.btime b{font-size:1.3rem}.brow{padding:14px 0}
   .home-btn{padding:12px 22px}.home-btn svg{width:22px;height:22px}
   #v-section{inset:40px;padding:0 40px 48px}#v-section .nav{margin:0 -40px;padding:14px 24px 14px 40px}
   .sec-x{width:60px;height:60px}.sec-x svg{width:26px;height:26px}
@@ -278,10 +294,10 @@ body{overflow:hidden}
           <svg viewBox="0 0 24 24"><path d="M4 14v-4a8 8 0 0 1 16 0v4"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M12 8v8M9.5 10v4M14.5 10v4"/></svg>
           <div><b>Audioguida</b><span>Ti dice dove sei e cosa vedi</span></div>
         </button>
-        <a class="meteo" data-q="bus" href="https://guestinfo.valgardena.it/content-page/54661" target="_blank" rel="noopener" aria-label="Orari dei bus">
+        <button class="meteo" data-q="bus" type="button" data-go="bus" aria-label="Orari dei bus">
           <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 9h16M8 14h.5M15.5 14h.5M6 18v2M18 18v2M9 3v-1M15 3v-1"/></svg>
-          <div><b>Orari bus</b><span>Fermata davanti all'hotel</span></div>
-        </a>
+          <div><b>Orari bus</b><span>Soplajes, in tempo reale</span></div>
+        </button>
       </div>
     </div>
 
@@ -353,7 +369,7 @@ en: {
 "Blue Bar & Bistrot":"Blue Bar & Bistrot","Colazione, bar, cucina":"Breakfast, bar, kitchen","Smart hub":"Smart hub","Meeting, coworking, eventi":"Meetings, coworking, events","Contatti":"Contacts","Reception, telefono, WhatsApp":"Reception, phone, WhatsApp",
 "Sci e mobilità":"Ski & mobility","Skipass":"Ski pass","Acquisto e ritiro":"Buying and collecting","Ski rental":"Ski rental","Noleggio attrezzatura":"Equipment hire","Car & scooter":"Car & scooter","Vespa, Topolino elettrica":"Vespa, electric Topolino",
 "La valle":"The valley","Val Gardena guide":"Val Gardena guide","Cosa fare in valle":"Things to do in the valley","Secret places":"Secret places","Itinerari consigliati":"Recommended routes","Shop Saslong":"Saslong shop","Vini, gin, grappa, bicchieri":"Wines, gin, grappa, glasses","Social":"Social","Le esperienze Alpstay su Instagram":"Alpstay experiences on Instagram",
-"Area riservata":"Staff area","Schermo intero":"Full screen","Esci da schermo intero":"Exit full screen","Chiudi":"Close","Apri in una nuova scheda":"Open in a new tab","Se la pagina resta vuota, il sito non consente la visualizzazione qui: usa \"Apri in una nuova scheda\".":"If the page stays blank, the site does not allow viewing here: use \"Open in a new tab\".","Sito web":"Website","Impressum":"Imprint","Privacy":"Privacy","Meteo Val Gardena":"Val Gardena weather","Webcam Val Gardena":"Val Gardena webcams","Audioguida della valle":"Valley audio guide","Orari dei bus":"Bus timetable","Indietro":"Back","Apri":"Open","Contenuto in arrivo":"Coming soon","Questa sezione sarà disponibile a breve. Nel frattempo chiedi in reception.":"This section will be available shortly. In the meantime, ask at reception.",
+"Area riservata":"Staff area","Soplajes, in tempo reale":"Soplajes, live","Fermata Soplajes, davanti all'hotel: partenze in tempo reale nelle due direzioni.":"Soplajes stop, in front of the hotel: live departures in both directions.","Carico le partenze…":"Loading departures…","Orari completi":"Full timetable","Verso Selva · Plan":"To Selva · Plan","Verso Ortisei · Bolzano · Bressanone":"To Ortisei · Bolzano · Bressanone","tra {n} min":"in {n} min","in arrivo":"arriving","ritardo {n} min":"{n} min late","in orario":"on time","orario programmato":"scheduled","Nessuna partenza nelle prossime ore.":"No departures in the next hours.","Aggiornato alle {t} · si aggiorna da solo":"Updated at {t} · refreshes automatically","Dati in tempo reale non raggiungibili: ecco il tabellone ufficiale della fermata.":"Live data unavailable: here is the official departure board for the stop.","Schermo intero":"Full screen","Esci da schermo intero":"Exit full screen","Chiudi":"Close","Apri in una nuova scheda":"Open in a new tab","Se la pagina resta vuota, il sito non consente la visualizzazione qui: usa \"Apri in una nuova scheda\".":"If the page stays blank, the site does not allow viewing here: use \"Open in a new tab\".","Sito web":"Website","Impressum":"Imprint","Privacy":"Privacy","Meteo Val Gardena":"Val Gardena weather","Webcam Val Gardena":"Val Gardena webcams","Audioguida della valle":"Valley audio guide","Orari dei bus":"Bus timetable","Indietro":"Back","Apri":"Open","Contenuto in arrivo":"Coming soon","Questa sezione sarà disponibile a breve. Nel frattempo chiedi in reception.":"This section will be available shortly. In the meantime, ask at reception.",
 "Orari, camera, servizi e regole della casa.":"Hours, your room, services and house rules.","Orari":"Opening hours","La mia stanza":"My room","Lava e asciuga":"Wash & dry","Auto e mobilità":"Car & mobility","Altri servizi":"Other services","Rispetto":"Respect","Emergenza":"Emergency","Servizio cortesia":"Courtesy service","Vacanza con il cane":"Holiday with your dog",
 "Reception":"Reception","Siamo quasi sempre a tua disposizione, e quasi sempre abbiamo una buona risposta alle tue domande.":"We're almost always here for you, and we almost always have a good answer to your questions.","Mattina":"Morning","Pomeriggio":"Afternoon","Solo una domanda veloce?":"Just a quick question?","Scrivici su WhatsApp":"Message us on WhatsApp",
 "Breakfast & brunch":"Breakfast & brunch","Courtesy service, di fronte alla reception":"Courtesy service, opposite reception","Buffet completo":"Full buffet","Dinner":"Dinner","Blue Bistrot":"Blue Bistrot","Specialità mediterranee e tirolesi, sempre fresche.":"Mediterranean and Tyrolean specialities, always fresh.","Bar":"Bar","Drink, gelato o cocktail":"Drinks, ice cream or cocktails","Notte":"Night",
@@ -411,7 +427,7 @@ de: {
 "L'hotel":"Das Hotel","Come posso aiutarti?":"Wie kann ich dir helfen?","Chiedi, ti rispondo subito":"Frag mich, ich antworte sofort","Hotel guide":"Hotel-Guide","Orari, servizi, regole":"Zeiten, Services, Hausregeln","Blue Bar & Bistrot":"Blue Bar & Bistrot","Colazione, bar, cucina":"Frühstück, Bar, Küche","Smart hub":"Smart Hub","Meeting, coworking, eventi":"Meetings, Coworking, Events","Contatti":"Kontakt","Reception, telefono, WhatsApp":"Rezeption, Telefon, WhatsApp",
 "Sci e mobilità":"Ski & Mobilität","Skipass":"Skipass","Acquisto e ritiro":"Kauf und Abholung","Ski rental":"Skiverleih","Noleggio attrezzatura":"Ausrüstung leihen","Car & scooter":"Auto & Roller","Vespa, Topolino elettrica":"Vespa, Elektro-Topolino",
 "La valle":"Das Tal","Val Gardena guide":"Gröden-Guide","Cosa fare in valle":"Was tun im Tal","Secret places":"Secret Places","Itinerari consigliati":"Empfohlene Touren","Shop Saslong":"Saslong-Shop","Vini, gin, grappa, bicchieri":"Weine, Gin, Grappa, Gläser","Social":"Social","Le esperienze Alpstay su Instagram":"Alpstay-Erlebnisse auf Instagram",
-"Area riservata":"Interner Bereich","Schermo intero":"Vollbild","Esci da schermo intero":"Vollbild beenden","Chiudi":"Schließen","Apri in una nuova scheda":"In neuem Tab öffnen","Se la pagina resta vuota, il sito non consente la visualizzazione qui: usa \"Apri in una nuova scheda\".":"Bleibt die Seite leer, erlaubt die Website die Anzeige hier nicht: nutze „In neuem Tab öffnen“.","Sito web":"Website","Impressum":"Impressum","Privacy":"Datenschutz","Meteo Val Gardena":"Wetter Gröden","Webcam Val Gardena":"Webcams Gröden","Audioguida della valle":"Audioguide durchs Tal","Orari dei bus":"Busfahrplan","Indietro":"Zurück","Apri":"Öffnen","Contenuto in arrivo":"Inhalt folgt","Questa sezione sarà disponibile a breve. Nel frattempo chiedi in reception.":"Dieser Bereich ist bald verfügbar. Bis dahin frag an der Rezeption.",
+"Area riservata":"Interner Bereich","Soplajes, in tempo reale":"Soplajes, live","Fermata Soplajes, davanti all'hotel: partenze in tempo reale nelle due direzioni.":"Haltestelle Soplajes vor dem Hotel: Abfahrten in Echtzeit in beide Richtungen.","Carico le partenze…":"Abfahrten werden geladen…","Orari completi":"Ganzer Fahrplan","Verso Selva · Plan":"Richtung Wolkenstein · Plan","Verso Ortisei · Bolzano · Bressanone":"Richtung St. Ulrich · Bozen · Brixen","tra {n} min":"in {n} Min.","in arrivo":"fährt ein","ritardo {n} min":"{n} Min. Verspätung","in orario":"pünktlich","orario programmato":"laut Fahrplan","Nessuna partenza nelle prossime ore.":"Keine Abfahrten in den nächsten Stunden.","Aggiornato alle {t} · si aggiorna da solo":"Aktualisiert um {t} · aktualisiert sich selbst","Dati in tempo reale non raggiungibili: ecco il tabellone ufficiale della fermata.":"Echtzeitdaten nicht erreichbar: hier die offizielle Abfahrtstafel der Haltestelle.","Schermo intero":"Vollbild","Esci da schermo intero":"Vollbild beenden","Chiudi":"Schließen","Apri in una nuova scheda":"In neuem Tab öffnen","Se la pagina resta vuota, il sito non consente la visualizzazione qui: usa \"Apri in una nuova scheda\".":"Bleibt die Seite leer, erlaubt die Website die Anzeige hier nicht: nutze „In neuem Tab öffnen“.","Sito web":"Website","Impressum":"Impressum","Privacy":"Datenschutz","Meteo Val Gardena":"Wetter Gröden","Webcam Val Gardena":"Webcams Gröden","Audioguida della valle":"Audioguide durchs Tal","Orari dei bus":"Busfahrplan","Indietro":"Zurück","Apri":"Öffnen","Contenuto in arrivo":"Inhalt folgt","Questa sezione sarà disponibile a breve. Nel frattempo chiedi in reception.":"Dieser Bereich ist bald verfügbar. Bis dahin frag an der Rezeption.",
 "Orari, camera, servizi e regole della casa.":"Zeiten, Zimmer, Services und Hausregeln.","Orari":"Öffnungszeiten","La mia stanza":"Mein Zimmer","Lava e asciuga":"Waschen & Trocknen","Auto e mobilità":"Auto & Mobilität","Altri servizi":"Weitere Services","Rispetto":"Rücksicht","Emergenza":"Notfall","Servizio cortesia":"Courtesy-Service","Vacanza con il cane":"Urlaub mit Hund",
 "Reception":"Rezeption","Siamo quasi sempre a tua disposizione, e quasi sempre abbiamo una buona risposta alle tue domande.":"Wir sind fast immer für dich da und haben fast immer eine gute Antwort auf deine Fragen.","Mattina":"Vormittag","Pomeriggio":"Nachmittag","Solo una domanda veloce?":"Nur eine kurze Frage?","Scrivici su WhatsApp":"Schreib uns auf WhatsApp",
 "Breakfast & brunch":"Frühstück & Brunch","Courtesy service, di fronte alla reception":"Courtesy-Service, gegenüber der Rezeption","Buffet completo":"Volles Buffet","Dinner":"Abendessen","Blue Bistrot":"Blue Bistrot","Specialità mediterranee e tirolesi, sempre fresche.":"Mediterrane und Tiroler Spezialitäten, immer frisch.","Bar":"Bar","Drink, gelato o cocktail":"Drinks, Eis oder Cocktails","Notte":"Nacht",
@@ -756,6 +772,10 @@ const SECTIONS = {
     <div id="shop-list"></div>
     <div class="cart" id="cart" hidden><div class="sum"><span id="cart-n"></span><b id="cart-t"></b></div><button class="cta full" type="button" id="cart-send">Ordina in reception</button>
       <p class="hint" style="margin:8px 0 0">Si apre WhatsApp con l'ordine già scritto; ritiri e paghi in reception.</p></div>`, init: initShop},
+  bus: {title:'Orari bus', lead:'Fermata Soplajes, davanti all\'hotel: partenze in tempo reale nelle due direzioni.', html:`
+    <div id="bus-board"><p class="hint">Carico le partenze…</p></div>
+    <p class="hint" id="bus-upd"></p>
+    <a class="cta" href="https://guestinfo.valgardena.it/content-page/54661" target="_blank" rel="noopener">Orari completi</a>`, init: initBus},
   bistrot: {title:'Blue Bar & Bistrot', lead:'L\'aria di montagna stimola l\'appetito? Aspetta di sentire l\'aria delle Dolomiti.', html:`
     <div class="block"><p>Buongustai, bambini un po' difficili, vegani e chi segue una dieta specifica: tutti trovano qualcosa che li soddisfa.</p>
       <div class="row"><span>Blue Bar</span><span>17:00 – 22:00</span></div>
@@ -935,8 +955,55 @@ function initGuide(){
   else if(location.protocol !== 'https:' && location.hostname !== 'localhost') st.textContent = t('La posizione funziona solo su un indirizzo https.');
   if(navigator.permissions && navigator.permissions.query){ navigator.permissions.query({name:'geolocation'}).then(r => { if(r.state==='denied') st.textContent = t('Permesso negato in precedenza: riattivalo nelle impostazioni del browser per questo sito.'); }).catch(()=>{}); }
   render();
+  if(window.top === window.self && location.protocol === 'https:' && navigator.geolocation) loc.click();
 }
 
+
+
+/* ---------- PARTENZE IN TEMPO REALE · FERMATA SOPLAJES ---------- */
+const BUS_STOP = '66001131';                 // Santa Cristina Valgardena, Soplajes (rete STA / Südtirolmobil)
+const BUS_API = 'https://efa.sta.bz.it/apb/XML_DM_REQUEST?outputFormat=JSON&mode=direct&type_dm=stop&useRealtime=1&limit=24&depType=stopEvents&name_dm=' + BUS_STOP;
+const BUS_HTML = 'https://efa.sta.bz.it/apb/XSLT_DM_REQUEST?mode=direct&type_dm=stop&useRealtime=1&limit=12&name_dm=' + BUS_STOP;
+let busTimer = null;
+const pad2 = n => String(n).padStart(2,'0');
+function busDir(d){
+  const p = d.servingLine && d.servingLine.liErgRiProj ? d.servingLine.liErgRiProj.direction : '';
+  if(p === 'R') return 'R'; if(p === 'H') return 'H';
+  return /selva|plan/i.test((d.servingLine && d.servingLine.direction) || '') ? 'R' : 'H';
+}
+function busRow(d){
+  const sl = d.servingLine || {}, sched = d.dateTime, real = d.realDateTime || d.dateTime;
+  const live = sl.realtime === '1' && !!d.realDateTime, delay = parseInt(sl.delay || '0', 10) || 0;
+  const cd = parseInt(d.countdown, 10);
+  const when = cd <= 0 ? t('in arrivo') : cd < 60 ? t('tra {n} min', {n: cd}) : pad2(real.hour) + ':' + pad2(real.minute);
+  const state = !live ? `<span class="bst">${t('orario programmato')}</span>`
+    : delay > 0 ? `<span class="bst late">${t('ritardo {n} min', {n: delay})}</span>` : `<span class="bst ok">${t('in orario')}</span>`;
+  const old = live && delay > 0 ? `<s>${pad2(sched.hour)}:${pad2(sched.minute)}</s> ` : '';
+  return `<div class="brow"><span class="bline">${sl.number || sl.symbol || ''}</span>
+    <div class="bdest"><b>${sl.direction || ''}</b>${state}</div>
+    <div class="btime"><b>${when}</b><span>${old}${pad2(real.hour)}:${pad2(real.minute)}${live ? ' <i class="blive" title="tempo reale"></i>' : ''}</span></div></div>`;
+}
+async function loadBus(){
+  const board = document.getElementById('bus-board'); if(!board){ clearInterval(busTimer); busTimer = null; return; }
+  try{
+    const ctrl = new AbortController(); const tm = setTimeout(() => ctrl.abort(), 8000);
+    const r = await fetch(BUS_API + '&language=' + (LANG === 'de' ? 'de' : LANG === 'it' ? 'it' : 'en') + '&_=' + Date.now(), {signal: ctrl.signal, cache: 'no-store'});
+    clearTimeout(tm); if(!r.ok) throw new Error('HTTP ' + r.status);
+    const data = JSON.parse(await r.text());
+    const list = (data.departureList || []).filter(d => d && d.dateTime);
+    const groups = {R: [], H: []}; list.forEach(d => groups[busDir(d)].push(d));
+    const col = (k, title) => `<div class="block bcol"><h3>${title}</h3>${groups[k].slice(0,5).map(busRow).join('') || `<p class="hint">${t('Nessuna partenza nelle prossime ore.')}</p>`}</div>`;
+    if(!document.getElementById('bus-board')) return;
+    board.innerHTML = col('R', t('Verso Selva · Plan')) + col('H', t('Verso Ortisei · Bolzano · Bressanone'));
+    const now = new Date(), upd = document.getElementById('bus-upd'); if(upd) upd.textContent = t('Aggiornato alle {t} · si aggiorna da solo', {t: pad2(now.getHours()) + ':' + pad2(now.getMinutes())});
+  }catch(err){
+    if(!document.getElementById('bus-board')) return;   // la sezione è già stata chiusa
+    // se i dati non arrivano (rete o blocco del browser) mostro il tabellone ufficiale della fermata
+    if(!board.querySelector('iframe')) board.innerHTML = `<p class="hint">${t('Dati in tempo reale non raggiungibili: ecco il tabellone ufficiale della fermata.')}</p><iframe class="bframe" title="Partenze Soplajes" src="${BUS_HTML}&language=${LANG === 'de' ? 'de' : 'it'}"></iframe>`;
+    const upd = document.getElementById('bus-upd'); if(upd) upd.textContent = '';
+  }
+}
+function initBus(){ clearInterval(busTimer); loadBus(); busTimer = setInterval(loadBus, 30000); }
 
 /* ---------- SHOP ---------- */
 const PRODUCTS = [
@@ -1000,7 +1067,6 @@ function initShop(){
     window.open('https://api.whatsapp.com/send?phone=' + WA + '&text=' + encodeURIComponent(msg), '_blank', 'noopener');
   };
   render();
-  if(window.top === window.self && location.protocol === 'https:' && navigator.geolocation) loc.click();
 }
 
 /* ---------- CHATBOT LOCALE ---------- */
@@ -1016,7 +1082,7 @@ const INTENTS = [
   {n:'parcheggio', k:['parcheggi','garage','auto','macchin','posto','disco'], t:['hotel/mobilita']},
   {n:'ricarica', k:['ricaric','elettric','colonnin','e-car','tesla','caricar'], t:['hotel/mobilita']},
   {n:'taxi', k:['taxi','transfer','aeroport','stazion','trasport'], t:['hotel/mobilita']},
-  {n:'bus', k:['bus','autobus','tren','pullman','mezzi','fermat'], t:['hotel/mobilita'], links:[['Orari dei bus','https://guestinfo.valgardena.it/content-page/54661']]},
+  {n:'bus', k:['bus','autobus','tren','pullman','mezzi','fermat','soplajes','partenz'], t:['bus','hotel/mobilita']},
   {n:'skipass', k:['skipass','ski pass','pist','impiant','superski','scont','risalit'], t:['skipass']},
   {n:'noleggio', k:['noleggi','rent','rental','affitt','attrezzatur','scarpon','snowboard','sci '], t:['skirental'], links:[['Prenota l\'attrezzatura','https://easyresv3.wintersteiger.at/index_easyrent.php?shop_id=100240&inloc=hoc030&sprache=ita']]},
   {n:'vespa', k:['vespa','scooter','topolin','motorin'], reply:'Vespa e Fiat Topolino elettrica si prenotano sul concierge Alpstay.', links:[['Prenota sul concierge','https://www.alpstay.eu/it/concierge.asp']]},
@@ -1183,7 +1249,7 @@ function show(id){
     : `<button class="tile" type="button" data-go="${m.id}">${I[m.icon]}<b>${m.title}</b>${I.chev}</button>`).join('') + `</div>`;
   if(!body) body = `<div class="soon"><b>Contenuto in arrivo</b>Questa sezione sarà disponibile a breve. Nel frattempo chiedi in reception.</div>`;
   document.getElementById('s-body').innerHTML = body; localize(document.getElementById('s-body'));
-  if(s.init) s.init();
+  if(s.init){ try{ s.init(); }catch(err){ console.error('Errore nella sezione', id, err); } }
   vHome.classList.add('on'); vSec.classList.add('on'); document.getElementById('sec-bg').classList.add('on'); vSec.scrollTop = 0;
 }
 document.addEventListener('click', e => {
