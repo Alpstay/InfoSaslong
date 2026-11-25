@@ -176,7 +176,15 @@ body{overflow:hidden}
 .view.on{flex:1;min-height:0}
 #v-home{overflow:hidden;padding-bottom:16px}
 #v-home.scroll{overflow-y:auto}
-#v-section.on{overflow-y:auto;padding-bottom:32px}
+/* ogni sezione si apre in overlay sopra la home, chiudibile con X */
+.sec-bg{position:fixed;inset:0;z-index:29;background:rgba(255,255,255,.85);display:none}
+.sec-bg.on{display:block}
+#v-section{position:fixed;inset:16px;z-index:30;max-width:1000px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.18);padding:0 24px 32px;overflow-y:auto;overscroll-behavior:contain}
+#v-section.on{display:block}
+#v-section .nav{position:sticky;top:0;z-index:2;background:#fff;margin:0 -24px;padding:8px 18px 8px 24px;border-bottom:1px solid var(--line)}
+#v-section .nav .back,#v-section .nav .home-btn{margin:0}
+.nav-r{display:flex;align-items:center;gap:10px}
+#v-section h2{margin-top:18px}
 /* barra navigazione sezioni */
 .nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .home-btn{display:inline-flex;align-items:center;gap:8px;margin:18px 0 6px;font:inherit;font-weight:700;background:#fff;border:1px solid var(--gold);border-radius:999px;color:var(--gold-deep);cursor:pointer;padding:8px 16px}
@@ -230,6 +238,8 @@ body{overflow:hidden}
   .qty button{width:44px;height:44px}
   .sheet{max-width:960px;padding:14px 40px calc(28px + env(safe-area-inset-bottom))}
   .home-btn{padding:12px 22px}.home-btn svg{width:22px;height:22px}
+  #v-section{inset:40px;padding:0 40px 48px}#v-section .nav{margin:0 -40px;padding:14px 24px 14px 40px}
+  .sec-x{width:60px;height:60px}.sec-x svg{width:26px;height:26px}
   .ext-wrap{padding:40px}.ext-bar{padding:16px 18px 16px 26px}.ext-x{width:60px;height:60px}.ext-x svg{width:26px;height:26px}
   .chat{min-height:320px}.bub{font-size:1rem}
   .ask input{padding:14px 18px}.ask button{width:56px;height:56px}
@@ -290,10 +300,14 @@ body{overflow:hidden}
   </section>
 
   <!-- SEZIONI -->
-  <section class="view" id="v-section">
+  <div class="sec-bg" id="sec-bg" data-go="home"></div>
+  <section class="view" id="v-section" role="dialog" aria-modal="true" aria-labelledby="s-title">
     <div class="nav">
       <button class="back" type="button" data-go="home"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Indietro</button>
-      <button class="home-btn" type="button" data-go="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Home</button>
+      <span class="nav-r">
+        <button class="home-btn" type="button" data-go="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Home</button>
+        <button class="ext-x sec-x" type="button" data-go="home" aria-label="Chiudi" title="Chiudi"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </span>
     </div>
     <h2 id="s-title"></h2>
     <p class="lead" id="s-lead"></p>
@@ -1150,7 +1164,7 @@ renderHome();
 
 const vHome = document.getElementById('v-home'), vSec = document.getElementById('v-section');
 function show(id){
-  if(id==='home' || !SECTIONS[id]){ vSec.classList.remove('on'); vHome.classList.add('on'); window.scrollTo(0,0); if(typeof fitHome==='function') fitHome(); return; }
+  if(id==='home' || !SECTIONS[id]){ vSec.classList.remove('on'); document.getElementById('sec-bg').classList.remove('on'); vHome.classList.add('on'); window.scrollTo(0,0); if(typeof fitHome==='function') fitHome(); return; }
   const s = SECTIONS[id];
   const back = document.querySelector('#v-section .back');
   document.querySelector('#v-section .home-btn').style.display = s.parent ? '' : 'none';
@@ -1165,7 +1179,7 @@ function show(id){
   if(!body) body = `<div class="soon"><b>Contenuto in arrivo</b>Questa sezione sarà disponibile a breve. Nel frattempo chiedi in reception.</div>`;
   document.getElementById('s-body').innerHTML = body; localize(document.getElementById('s-body'));
   if(s.init) s.init();
-  vHome.classList.remove('on'); vSec.classList.add('on'); vSec.scrollTop = 0; window.scrollTo(0,0);
+  vHome.classList.add('on'); vSec.classList.add('on'); document.getElementById('sec-bg').classList.add('on'); vSec.scrollTop = 0;
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if(!b) return;
@@ -1196,7 +1210,7 @@ document.addEventListener('click', e => {
   e.preventDefault(); const lbl = a.querySelector('b') ? a.querySelector('b').textContent : a.textContent.trim();
   openExt(a.href, lbl);
 }, true);
-document.addEventListener('keydown', e => { if(e.key==='Escape' && extWrap.classList.contains('on')) closeExt(); });
+document.addEventListener('keydown', e => { if(e.key!=='Escape') return; if(extWrap.classList.contains('on')) closeExt(); else if(vSec.classList.contains('on')){ show('home'); try{ history.pushState(null,'',location.pathname+location.search); }catch(err){} } });
 
 
 /* ---------- HOME A SCHERMO INTERO, SENZA SCROLL ---------- */
